@@ -8,6 +8,7 @@
 #include <Wire.h>
 #endif
 
+
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 
 // 'Layer 1', 120x15px
@@ -67,19 +68,35 @@ const unsigned char* epd_bitmap_allArray[2] = {
 #define START_STOP_BUTTON 5 //to start or stop the car INITIALIZE CRONOMETER
 #define NUM_SCREENS 4 //How many screens do we have
 
+
+
+//FOR ESP32 uncomment this section
+/*
+#define SDA_PIN 21
+#define SCL_PIN 22
+#define NEXT_BUTTON 4 //to move cursor
+#define UP_BUTTON 18 //to increase value
+#define LOW_BUTTON 5 //to decrease value
+#define START_STOP_BUTTON 19 //to start or stop the car INITIALIZE CRONOMETER
+#define NUM_SCREENS 4 //How many screens do we have
+*/
+
+
+
 int screen_interval = 16, selectBox_ypos = 15, initialSelectBox_ypos = 15, cursorPosition = 0, decimals = 0, integers = 0;
 int seconds = 0, hundredths = 0;
 unsigned long elapsed, startTime;
 char buffer[10];
-int screenIndex = 0;
+int screenIndex = 0, serialORparallelIndex = 1,/*PID VAL FOR THE CAR*/ KP_OF, KI_OF, KD_OF;
 bool stateRUNNING = false;
+int forRisingEdgeDetector = 0; //to avoid multiple button pressed lectures for cursor
 
 float PIDvalues[3][2] = {
-  {1, 2}/*KP*/,
+  {1, 2}/*KP serial-parallel*/,
   {0.5, 0.7}/*KI*/, 
   {0.02, 0.5}/*KD*/
 };
-float PIDsteps[3] = {1/*KP*/, 0.1/*KI*/, 0.05/*KD*/};
+float PIDsteps[3] = {1/*KP*/, 0.1/*KI*/, 0.01/*KD*/};
 int tittle_xpos[2] = {40, 25};
 
 void setup() {
@@ -90,8 +107,9 @@ void setup() {
   pinMode(START_STOP_BUTTON, INPUT);
   u8g2.begin();
   Serial.begin(115200);
-  //u8g.setFont(u8g_font_tpssb);
-  //u8g.setColorIndex(1);
+
+  //FOR ESP32 uncomment this line
+  //Wire.begin(SDA_PIN, SCL_PIN);
 }
 
 void loop() {
@@ -132,7 +150,14 @@ void loop() {
     
 
     //next button to move the cursor or selectbox
-    if(digitalRead(NEXT_BUTTON) == HIGH)cursorPosition = (cursorPosition+1)%3;
+    if(digitalRead(NEXT_BUTTON) == HIGH){
+      if(forRisingEdgeDetector == 0){
+        cursorPosition = (cursorPosition+1)%3;
+        forRisingEdgeDetector = 1;
+      }
+    }else{
+      forRisingEdgeDetector = 0;
+    }
     selectBox_ypos = initialSelectBox_ypos+(cursorPosition)*screen_interval;
     if(selectBox_ypos > 47) selectBox_ypos = 15;
 
@@ -168,11 +193,24 @@ void loop() {
         u8g2.drawStr(15, 25, "Serie");
         u8g2.drawStr(15, 55, "Paralelo");
       } while (u8g2.nextPage());
-
     
-    if(digitalRead(NEXT_BUTTON) == HIGH)cursorPosition = (cursorPosition+1)%2;
+    //press CURSOR BUTTON
+    if(digitalRead(NEXT_BUTTON) == HIGH){
+      if(forRisingEdgeDetector == 0){
+        cursorPosition = (cursorPosition+1)%2;
+        forRisingEdgeDetector = 1;
+      }
+    }else{
+      forRisingEdgeDetector = 0;
+    }
 
     if(digitalRead(START_STOP_BUTTON) == HIGH){
+      //define the PID VALUES for the car
+      serialORparallelIndex = cursorPosition;
+      KP_OF = PIDvalues[0][serialORparallelIndex];
+      KI_OF = PIDvalues[1][serialORparallelIndex];
+      KD_OF = PIDvalues[2][serialORparallelIndex];
+
       delay(1000);
       screenIndex = (screenIndex+1)%NUM_SCREENS;
       u8g2.firstPage();
