@@ -28,29 +28,66 @@ const unsigned char selection_img [] PROGMEM = {
 	0xff, 0x1f, 0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
 	0x0f
 };
-
-// Array of all bitmaps for convenience. (Total bytes used to store images in PROGMEM = 256)
-const int epd_bitmap_allArray_LEN = 1;
-const unsigned char* epd_bitmap_allArray[1] = {
-	selection_img
+const unsigned char selectionBox2 [] PROGMEM = {
+	0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x1f, 0x02, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x01, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x01, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0xc0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 
+	0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x01, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x01, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x01, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 
+	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x0f, 0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
+	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x07
 };
-
+// Array of all bitmaps for convenience. (Total bytes used to store images in PROGMEM = 256)
+const int epd_bitmap_allArray_LEN = 2;
+const unsigned char* epd_bitmap_allArray[2] = {
+	selection_img,
+  selectionBox2
+};
 
 //pin assignation for buttons
 #define NEXT_BUTTON 2 //to move cursor
 #define UP_BUTTON 3 //to increase value
 #define LOW_BUTTON 4 //to decrease value
+#define START_STOP_BUTTON 5 //to start or stop the car INITIALIZE CRONOMETER
+#define NUM_SCREENS 4 //How many screens do we have
 
 int screen_interval = 16, selectBox_ypos = 15, initialSelectBox_ypos = 15, cursorPosition = 0, decimals = 0, integers = 0;
+int seconds = 0, hundredths = 0;
+unsigned long elapsed, startTime;
 char buffer[10];
+int screenIndex = 0;
+bool stateRUNNING = false;
 
-float PIDvalues[3] = {1/*KP*/, 0.5/*KI*/, 0.02/*KD*/};
+float PIDvalues[3][2] = {
+  {1, 2}/*KP*/,
+  {0.5, 0.7}/*KI*/, 
+  {0.02, 0.5}/*KD*/
+};
 float PIDsteps[3] = {1/*KP*/, 0.1/*KI*/, 0.05/*KD*/};
+int tittle_xpos[2] = {40, 25};
 
 void setup() {
+  startTime = millis();
   pinMode(NEXT_BUTTON, INPUT);
   pinMode(UP_BUTTON, INPUT);
   pinMode(LOW_BUTTON, INPUT);
+  pinMode(START_STOP_BUTTON, INPUT);
   u8g2.begin();
   Serial.begin(115200);
   //u8g.setFont(u8g_font_tpssb);
@@ -58,42 +95,133 @@ void setup() {
 }
 
 void loop() {
-  u8g2.clearBuffer();
-  u8g2.setFont(u8g2_font_lastapprenticebold_tr);//12PIX print TITTLE
-  u8g2.drawStr(54, 1+12, "PID");
-  u8g2.drawXBMP(5, selectBox_ypos, 120, 15, selection_img);
+  if(screenIndex == 0 || screenIndex == 1){
+    if(screenIndex == 0){
+      //pantalla PID
+      u8g2.clearBuffer();
+      u8g2.setFont(u8g2_font_lastapprenticebold_tr);//12PIX print TITTLE
+      u8g2.drawStr(tittle_xpos[screenIndex], 1+12, "PID SERIE");
+      u8g2.drawXBMP(5, selectBox_ypos, 120, 15, selection_img);
 
-  u8g2.setFont(u8g2_font_t0_11b_tf);//8PIX print SUBTITTLES
-  u8g2.drawStr(8, 18+8, "Kp");
-  u8g2.drawStr(8, 18+screen_interval+8, "Ki");
-  u8g2.drawStr(8, 18+screen_interval*2+8, "Kd");
+      u8g2.setFont(u8g2_font_t0_11b_tf);//8PIX print SUBTITTLES
+      u8g2.drawStr(8, 18+8, "Kp");
+      u8g2.drawStr(8, 18+screen_interval+8, "Ti");
+      u8g2.drawStr(8, 18+screen_interval*2+8, "Td");
+    }else{
+      //pantalla PID
+      u8g2.clearBuffer();
+      u8g2.setFont(u8g2_font_lastapprenticebold_tr);//12PIX print TITTLE
+      u8g2.drawStr(tittle_xpos[screenIndex], 1+12, "PID PARALELO");
+      u8g2.drawXBMP(5, selectBox_ypos, 120, 15, selection_img); //CURSOR
 
-  u8g2.setFont(u8g2_font_t0_11_tf);//8PIX print PID VALUES
-  for(int i = 0; i<3; i++){
-    integers = (int)PIDvalues[i];
-    decimals = abs((int)((PIDvalues[i] - integers) * 100));
+      u8g2.setFont(u8g2_font_t0_11b_tf);//8PIX print SUBTITTLES
+      u8g2.drawStr(8, 18+8, "Kp");
+      u8g2.drawStr(8, 18+screen_interval+8, "Ki");
+      u8g2.drawStr(8, 18+screen_interval*2+8, "Kd");
+    }
 
-    sprintf(buffer, "%d.%02d", integers, decimals);
-    //dtostrf(PIDvalues[i], 4, 2, buffer);  // (valor, ancho, decimales, buffer)
-    u8g2.drawStr(30, 18+8+screen_interval*i, buffer);
+    u8g2.setFont(u8g2_font_t0_11_tf);//8PIX print PID VALUES
+    for(int i = 0; i<3; i++){
+      integers = (int)PIDvalues[i][screenIndex];
+      decimals = abs((int)((PIDvalues[i][screenIndex] - integers) * 100));
+
+      sprintf(buffer, "%d.%02d", integers, decimals);
+      //dtostrf(PIDvalues[i], 4, 2, buffer);  // (valor, ancho, decimales, buffer)
+      u8g2.drawStr(30, 18+8+screen_interval*i, buffer);
+    }
+    
+
+    //next button to move the cursor or selectbox
+    if(digitalRead(NEXT_BUTTON) == HIGH)cursorPosition = (cursorPosition+1)%3;
+    selectBox_ypos = initialSelectBox_ypos+(cursorPosition)*screen_interval;
+    if(selectBox_ypos > 47) selectBox_ypos = 15;
+
+    //ADD OR SUBSTRACT values in pid
+    if(digitalRead(UP_BUTTON) == HIGH)PIDvalues[cursorPosition][screenIndex]+= PIDsteps[cursorPosition];
+    if(digitalRead(LOW_BUTTON) == HIGH)PIDvalues[cursorPosition][screenIndex]-= PIDsteps[cursorPosition];
+
+    for(int i = 0; i<3; i++)if(PIDvalues[i][screenIndex] < 0)PIDvalues[i][screenIndex] = 0;
+
+    if(digitalRead(START_STOP_BUTTON) == HIGH){
+      delay(1000);
+      screenIndex = (screenIndex+1)%NUM_SCREENS;
+      cursorPosition = 0;
+      u8g2.firstPage();
+      do {
+        // clear screen
+      } while (u8g2.nextPage());
+    }
+
+    delay(100);
   }
-  
-  
 
-  //next button to move the cursor or selectbox
-  if(digitalRead(NEXT_BUTTON) == HIGH)cursorPosition = (cursorPosition+1)%3;
-  selectBox_ypos = initialSelectBox_ypos+(cursorPosition)*screen_interval;
-  if(selectBox_ypos > 47) selectBox_ypos = 15;
 
-  //ADD OR SUBSTRACT values in pid
-  if(digitalRead(UP_BUTTON) == HIGH)PIDvalues[cursorPosition]+= PIDsteps[cursorPosition];
-  if(digitalRead(LOW_BUTTON) == HIGH)PIDvalues[cursorPosition]-= PIDsteps[cursorPosition];
 
-  for(int i = 0; i<3; i++)if(PIDvalues[i] < 0)PIDvalues[i] = 0;
 
+  if(screenIndex == 2){
+    //select SERIAL PARALLEL
+    u8g2.firstPage();
+      do {
+        u8g2.drawXBMP(5, 4+30*cursorPosition, 120, 24, selectionBox2); //CURSOR
+
+        u8g2.setFont(u8g2_font_lubB18_tf);//18PIX print SERIAL PARALLEL
+        u8g2.drawStr(15, 25, "Serie");
+        u8g2.drawStr(15, 55, "Paralelo");
+      } while (u8g2.nextPage());
+
+    
+    if(digitalRead(NEXT_BUTTON) == HIGH)cursorPosition = (cursorPosition+1)%2;
+
+    if(digitalRead(START_STOP_BUTTON) == HIGH){
+      delay(1000);
+      screenIndex = (screenIndex+1)%NUM_SCREENS;
+      u8g2.firstPage();
+      do {
+        // Clear screen
+      } while (u8g2.nextPage());
+      if(screenIndex == 3){
+        startTime = millis();
+        stateRUNNING = true;
+      }
+    }
+  }
+
+
+
+
+  if(screenIndex == 3){
+    if(digitalRead(START_STOP_BUTTON) == HIGH){
+      stateRUNNING = false;
+      delay(1000);
+      screenIndex = (screenIndex+1)%NUM_SCREENS;
+      u8g2.firstPage();
+      do {
+        // Clear screen
+      } while (u8g2.nextPage());
+      cursorPosition = 0;
+    }
+
+    if(stateRUNNING == true){
+      elapsed = millis() - startTime;
+    }
+      seconds = elapsed / 1000;
+      hundredths = (elapsed % 1000) / 10;
+      char buffer[10];
+      sprintf(buffer, "%02d.%02d s", seconds, hundredths);
+
+      // Dibuja en pantalla
+      u8g2.firstPage();
+      do {
+        u8g2.setFont(u8g2_font_logisoso32_tf);  // Usa fuente grande
+        u8g2.drawStr(0, 50, buffer);            // Muestra tiempo
+      } while (u8g2.nextPage());
+      delay(5);
+    
+
+  }
 
 
   u8g2.sendBuffer();
-  delay(100);
+  
   
 }
